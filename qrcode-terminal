@@ -1,0 +1,50 @@
+#!/usr/bin/env php
+<?php
+
+if (file_exists(__DIR__.'/../../autoload.php')) {
+    require __DIR__.'/../../autoload.php';
+} else {
+    require __DIR__.'/vendor/autoload.php';
+}
+
+define('BIN_NAME', 'qrcode-terminal');
+
+$argv = $_SERVER['argv'];
+
+array_shift($argv);
+
+$input = current($argv);
+
+if (!$input || $input === '-h' || $input === '--help') {
+    help();
+    exit();
+}
+
+if ($input === '-v' || $input === '--version') {
+    version();
+    exit();
+}
+
+echo \Shelwei\QRCode::terminal($input);
+
+function help() {
+    $help = array(
+        '',
+        'Usage: ' .BIN_NAME. ' <message>',
+        '',
+        'Options:',
+        '  -h, --help           output usage information',
+        '  -v, --version        output version number',
+        '',
+        'Examples:',
+        '',
+        '  $ ' . BIN_NAME . ' hello',
+        '  $ ' . BIN_NAME . ' "hello world"',
+        ''
+    );
+    echo implode("\n", $help);
+}
+
+function version(){
+    printf("%s version 0.0.1\n", BIN_NAME);
+}

@@ -1,0 +1,28 @@
+{
+  "name": "shelwei/qrcode-terminal",
+  "description": "QRCodes, in the terminal by PHP",
+  "keywords": ["ansi", "ascii", "qrcode", "console", "php"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shelwin Wei",
+      "email": "wxfans@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Shelwei\\": "src/"
+    }
+  },
+  "require": {
+    "aferrandini/phpqrcode": "1.0.1"
+  },
+  "bin": [
+    "qrcode-terminal"
+  ],
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.0.1-dev"
+    }
+  }
+}
