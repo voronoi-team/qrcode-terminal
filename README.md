@@ -18,7 +18,7 @@ Generate QR code's for in your terminal. like https://github.com/gtanner/qrcode-
 # Command-Line
 ## Install
 
-    $ composer global require qrcode-terminal
+    $ composer global require shelwei/qrcode-terminal
 
 ## Usage
 
