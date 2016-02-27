@@ -1,7 +1,6 @@
 # PHP QRCode Terminal
 
 Generate QR code's for in your terminal. like https://github.com/gtanner/qrcode-terminal
-![Basic Example][basic-example-img]
 
 # Install using `composer`:
 
