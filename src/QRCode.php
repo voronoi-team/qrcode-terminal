@@ -2,29 +2,31 @@
 
 namespace Shelwei;
 
-use \PHPQRCode\QRencode;
-use \PHPQRCode\Constants;
+use Endroid\QrCode\QrCode as BaseQRCode;
+use Endroid\QrCode\ErrorCorrectionLevel;
 
 class QRCode
 {
-    public static function terminal($text, $level = Constants::QR_ECLEVEL_L, $size = 3, $margin = 4)
+    public static function terminal($text, $level = null, $size = 3, $margin = 4)
     {
         $backColor = "\033[40m  \033[0m";
         $foreColor = "\033[47m  \033[0m";
 
-        $enc = QRencode::factory($level, $size, $margin);
-        $qrcode = $enc->encode($text, false);
+        $qrCode = new BaseQRCode($text);
+        $qrCode->setErrorCorrectionLevel($level ?? ErrorCorrectionLevel::HIGH());
+
+        $data = $qrCode->getData();
 
         $output = '';
-        foreach($qrcode as $k=>$qr){
-            $len = strlen($qr);
+        foreach($data["matrix"] as $k => $data) {
+            $len = count($data);
             $border = str_repeat($foreColor, $len + 2);
             if($k === 0){
                 $output .= $border . "\n";
             }
             $curLine = '';
-            for($i = 0; $i< strlen($qr); $i++){
-                $curLine .= ($qr[$i] ? $backColor : $foreColor);
+            for($i = 0; $i< count($data); $i++){
+                $curLine .= ($data[$i] ? $backColor : $foreColor);
             }
             $output .= $foreColor. $curLine. $foreColor. "\n";
 

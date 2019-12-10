@@ -15,7 +15,7 @@
     }
   },
   "require": {
-    "aferrandini/phpqrcode": "1.0.1"
+    "endroid/qr-code": "^3.7"
   },
   "bin": [
     "qrcode-terminal"
